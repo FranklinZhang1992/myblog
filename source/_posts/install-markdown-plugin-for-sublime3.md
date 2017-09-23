@@ -42,7 +42,7 @@ import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe0
 
 - When you see the plugin list, type in **MarkdownEditing** and **enter**, then the plugin installation begins. The plugin won't take effect until you restart Sublime.
 
-![plugin list](/assets/img/install_markdown_plugin_for_sublime3/plugin_list.PNG)
+![MarkdownEditing in plugin list](/assets/img/install_markdown_plugin_for_sublime3/MarkdownEditing_in_list.PNG)
 
 ### Install OmniMarkupPreviewer
 
