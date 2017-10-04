@@ -1,7 +1,8 @@
 ---
 title: Sublime3 安装Markdown插件
 date: 2017-09-14 21:49:34
-tags: Sublime3
+tags:
+  - Sublime3
 ---
 
 This blog introduces two popular Markdown plugins in Sublime and describes how to install these two plugins for Sublime3.
