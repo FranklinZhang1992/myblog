@@ -58,3 +58,6 @@ import urllib.request,os,hashlib; h = '6f4c264a24d933ce70df5dedcf1dcaee' + 'ebe0
 - When you see the plugin list, type in **OmniMarkupPreviewer** and **enter**, then the plugin installation begins. The plugin won't take effect until you restart Sublime.
 
 ![OmniMarkupPreviewer in plugin list](/assets/img/install_markdown_plugin_for_sublime3/OmniMarkupPreviewer_in_list.PNG)
+
+*****
+转载请注明：[Franklin的博客](https://franklinzhang1992.github.io/)

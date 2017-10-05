@@ -18,3 +18,6 @@ tags:
 ![Set shortcut page](/assets/img/set_open_terminl_shortcut_in_centos_7/set_shortcut_page.PNG)
 ### 最后会弹出一个小窗口，填写如下内容即可(注：Name是此快捷键的名字，可以随便填，Command是此快捷键对应的命令，这里是打开终端的指令，最后点击Edit按钮并输入你想要的快捷键组合并点击Add即可完成设置)
 ![Set shortcut](/assets/img/set_open_terminl_shortcut_in_centos_7/set_shortcut.PNG)
+
+*****
+转载请注明：[Franklin的博客](https://franklinzhang1992.github.io/)
