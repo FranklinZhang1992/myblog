@@ -1,7 +1,7 @@
 ---
 title: How to write a Crontab like task scheduler with java
 reward: true
-date: 2017-10-04 19:40:15
+date: 2017-10-05 11:30:032
 tags:
   - Crontab
   - java
@@ -11,6 +11,9 @@ Most people knows that there is a tool called Crontab in Linux and we can use it
 *****
 ###### Before we start, a general introduction of Crontab time expression will be described (This is important because our self-written task scheduler will still based on the Crontab time expression):
 ## Crontab time expression
+
+<!--more-->
+
 ```
 .---------------- minute (0 - 59)
 |  .------------- hour (0 - 23)
@@ -20,8 +23,6 @@ Most people knows that there is a tool called Crontab in Linux and we can use it
 |  |  |  |  |
 *  *  *  *  *
 ```
-<!--more-->
-
 1. The first column means minute, every-X-minutes can be represented as `*/X`, you can also specify some specified minutes with an expression like (each numbers are separated by a comma): `1,3,5` or a specified range with `1-3`.
 2. The second column means hour, every-X-hours can be represented as  `*/X`, you can also specify some specified hours with an expression like (each numbers are separated by a comma): `1,3,5` or a specified range with `1-3`.
 3. The third column means day, every-X-days can be represented as  `*/X`, you can also specify some specified days with an expression like (each numbers are separated by a comma): `1,3,5` or a specified range with `1-3`.
@@ -143,10 +144,12 @@ private List<Integer> getSteppedRange(final int start, final int stop, final int
 ###### In some cases, you may want to let the task be executed at a specified time. We call this kind of task a one time task, the difference between a one time task and other tasks is that it has an additional field: year field. Then I will explain how deal with the one time task based on our previous algorithm.
 - First, let's look at an example `30 8 1 10 * 2017`, this is a typical one time expression (like a variation of traditional Crontab expression), this expression means the task should be executed at **2017-10-01 8:30**.
 - To let your scheduler support the one time task, you should add the sixth field (year field) for your scheduler, this field should store the year number. When you start calculating the next run time, you should first let the time pointer mentioned in above work flow point to the specified year and after that, the logic is just the same.
+
 ###### In another case, if you are familiar with Linux Crontab, you would know that for the day-of-week field, the step means every X days in a week, not every X weeks, so what should we do if we want to let our scheduler support the every-X-weeks task? My solution is as below:
 - First, we can see a truth that the **step** of day-of-week field should between 0 and 7, so I just plan to let the every-X-weeks' expression be like `*/14`, when the step is beyond 7 and it is an integral multiple of 7, then we will treat it as a every-X-weeks expression.
 - When we extract the **step** from day-of-week field, will pick the **step** part first, and get the X (X = step / 7), we should record this value (jumpWeekCount) for later use can reset the **step** field to Y (Y = original_step > 7 ? 1 : original_step).
 - When we start calculating the next run time, we should check if we need to skip some weeks for the task (jumpWeekCount > 1 or not). If so, we should call original logic to calculate the next run time and check whether the days between next run time and now is integer multiple of  7 * jumpWeekCount. In this way, we can both reuse previous calculating next run time logic and ensure the next run time is indeed the one we expect.
+
 ## A demo project
 - Now you have got a general idea of the algorithm of Crontab, so its time to have a look at my demo. This demo implements a simple task scheduler. You can copy the code, change the code and integrate it into your own project.
 Click [here](https://github.com/FranklinZhang1992/unity-learning/tree/master/java/TaskScheduler) for the demo.

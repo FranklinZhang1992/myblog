@@ -1,6 +1,6 @@
 ---
 title: GitHub Markdown Guide
-date: 2017-10-05 11:30:03
+date: 2017-10-04 19:40:15
 tags:
   - github
   - Markdown
