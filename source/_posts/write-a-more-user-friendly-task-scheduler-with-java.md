@@ -32,8 +32,8 @@ For example, if we nudge month field to next month, then the day-of-month field'
   - When we continue to figure out the next run time, here comes the key, if we do not update the array, then the next run time will be in next year's February, but actually we want it to be executed at next year's April. So obviously the values in the month field's array are not accurate if we nudge to the next year.
   To resolve this, first, we need to pick out the last value in the array (**9**) and plus it with the step (**7**), we can use java class **Calendar** for the time calculation and we will easily get the new value which means next year's April (Note. in java Calendar, April is represented as 3 but in Crontab, April is represented as 4, so we need to do a conversion). Now let's use the new value as the first value in the new array and generate a new array with the step field, the new array will be like `[4, 11]`. With the new array, we can correctly get the next run time **2018-04-15 20:00**. Bingo.
 
-###### Still, I will show you a demo to help you understand it.
-Click [here](https://github.com/FranklinZhang1992/unity-learning/tree/master/java/TaskSchedulerAdvance) for the demo.
+*****
+###### Still, I will show you a demo to help you understand it. Click [here](https://github.com/FranklinZhang1992/unity-learning/tree/master/java/TaskSchedulerAdvance) for the demo.
 
 *****
 转载请注明：[Franklin的博客](https://franklinzhang1992.github.io/)
