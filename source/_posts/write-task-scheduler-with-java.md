@@ -37,7 +37,7 @@ Most people knows that there is a tool called Crontab in Linux and we can use it
 
 *****
 ###### Now you must know better about the Crontab time expression, it seems it is time to start write our own task scheduler based on the Crontab time expression.
-## Validations
+## Validations and calculating next run time
 - As we know, each fields in the Crontab expression are separated by a white space, so the first step we need to do is to extract each field in the received string. We can simply do this with below code slice:
 ```java
 String[] fields = cronString.split("\\s+");
@@ -118,20 +118,36 @@ private List<Integer> getSteppedRange(final int start, final int stop, final int
   +-------+
   | start |
   +-------+
-      |   +--------------------------------------+
-      +-->| find nearest month in the monthArray |
-          +--------------------------------------+
-                           |    +----------------------------------------------+
-                           +--->| find nearest day of month in dayOfMonthArray |
-                                | the day should also in dayOfWeekArray        |
-                                +----------------------------------------------+
-                                                     |     +------------------------------------+
-                                                     +---->| find nearest hour in the hourArray |
-                                                           +------------------------------------+
-                                                                             |     +----------------------------------------+
-                                                                             +---->| find nearest minute in the minuteArray |
-                                                                                   +----------------------------------------+
+      |   +----------------------------------------------------------+
+      +-->| generate a time pointer and let it point to current time |
+          +----------------------------------------------------------+
+                                  |   +---------------------------------------------+
+                                  +-->| find nearest month in the monthArray        |
+                                      | and let the time pointer point to the month |
+                                      +---------------------------------------------+
+                                                       |    +----------------------------------------------+
+                                                       +--->| find nearest day of month in dayOfMonthArray |
+                                                            | the day should also in dayOfWeekArray and    |
+                                                            | let the time pointer point to the day        |
+                                                            +----------------------------------------------+
+                                      +----------------------------------------+    |
+                                      | find nearest hour in the hourArray and |<---+
+                                      | let the time pointer point to the hour |
+                                      +----------------------------------------+
+       +--------------------------------------------+      |
+       | find nearest minute in the minuteArray and |<-----+
+       | let the time pointer point to the minute   |
+       +--------------------------------------------+
 ```
+## Additional functions
+###### In some cases, you may want to let the task be executed at a specified time. We call this kind of task a one time task, the difference between a one time task and other tasks is that it has an additional field: year field. Then I will explain how deal with the one time task based on our previous algorithm.
+- First, let's look at an example `30 8 1 10 * 2017`, this is a typical one time expression (like a variation of traditional Crontab expression), this expression means the task should be executed at **2017-10-01 8:30**.
+- To let your scheduler support the one time task, you should add the sixth field (year field) for your scheduler, this field should store the year number. When you start calculating the next run time, you should first let the time pointer mentioned in above work flow point to the specified year and after that, the logic is just the same.
+###### In another case, if you are familiar with Linux Crontab, you would know that for the day-of-week field, the step means every X days in a week, not every X weeks, so what should we do if we want to let our scheduler support the every-X-weeks task? My solution is as below:
+- First, we can see a truth that the **step** of day-of-week field should between 0 and 7, so I just plan to let the every-X-weeks' expression be like `*/14`, when the step is beyond 7 and it is an integral multiple of 7, then we will treat it as a every-X-weeks expression.
+- When we extract the **step** from day-of-week field, will pick the **step** part first, and get the X (X = step / 7), we should record this value (jumpWeekCount) for later use can reset the **step** field to Y (Y = original_step > 7 ? 1 : original_step).
+- When we start calculating the next run time, we should check if we need to skip some weeks for the task (jumpWeekCount > 1 or not). If so, we should call original logic to calculate the next run time and check whether the days between next run time and now is integer multiple of  7 * jumpWeekCount. In this way, we can both reuse previous calculating next run time logic and ensure the next run time is indeed the one we expect.
+## A demo project
 - Now you have got a general idea of the algorithm of Crontab, so its time to have a look at my demo. This demo implements a simple task scheduler. You can copy the code, change the code and integrate it into your own project.
 Click [here](https://github.com/FranklinZhang1992/unity-learning/tree/master/java/TaskScheduler) for the demo.
 
