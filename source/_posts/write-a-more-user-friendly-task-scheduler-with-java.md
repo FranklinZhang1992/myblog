@@ -31,6 +31,16 @@ For example, if we nudge month field to next month, then the day-of-month field'
   - When we calculating the next run time, the nearest month is September, and the nearest date is 15th. As current time **16:00** is earlier than **20:00**, so the first run time should be **2017-09-15 20:00**. Goal 1 is satisfied.
   - When we continue to figure out the next run time, here comes the key, if we do not update the array, then the next run time will be in next year's February, but actually we want it to be executed at next year's April. So obviously the values in the month field's array are not accurate if we nudge to the next year.
   To resolve this, first, we need to pick out the last value in the array (**9**) and plus it with the step (**7**), we can use java class **Calendar** for the time calculation and we will easily get the new value which means next year's April (Note. in java Calendar, April is represented as 3 but in Crontab, April is represented as 4, so we need to do a conversion). Now let's use the new value as the first value in the new array and generate a new array with the step field, the new array will be like `[4, 11]`. With the new array, we can correctly get the next run time **2018-04-15 20:00**. Bingo.
+* For other fields, as the logic is just the same, so I don't say much about them. I just list the rules below (The first column shows which field is nudged, the second field shows which field's array should be udpated):
+
+Nudged field | Updated array
+------------ | -------------
+Year field | Month field's array
+Month field | Day of month field's array
+Day of month field | Hour field's array
+Hour field | Minute field's array
+
+P.S. No array needs to be updated when minute field is nudged. And for day-of-week field, we do not nudge it as it is enough to just nudge the day-of-month field and it equals to nudge the day-of-week field.
 
 *****
 ###### Still, I will show you a demo to help you understand it. Click [here](https://github.com/FranklinZhang1992/unity-learning/tree/master/java/TaskSchedulerAdvance) for the demo.
