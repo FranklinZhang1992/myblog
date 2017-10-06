@@ -1,5 +1,5 @@
 ---
-title: How to write a crontab like task scheduler with java
+title: How to write a Crontab like task scheduler with java
 reward: true
 date: 2017-10-04 19:40:15
 tags:
@@ -7,9 +7,9 @@ tags:
   - java
 ---
 
-Most people knows that there is a tool called crontab in Linux and we can use it to execute some scheduled tasks. Normally, we just use it to call a script periodically and we write our business stuff in this script. This approach works for most of the cases. However, what if you want to integrate it to your project? You want to do some validations to let user know that they typed in a wrong cron expression and you want to store all tasks in your database instead of files. These will all be described in this blog.
+Most people knows that there is a tool called Crontab in Linux and we can use it to execute some scheduled tasks. Normally, we just use it to call a script periodically and we write our business stuff in this script. This approach works for most of the cases. However, what if you want to integrate it to your project? You want to do some validations to let user know that they typed in a wrong cron expression and you want to store all tasks in your database instead of files. These will all be described in this blog.
 *****
-###### Before we start, a general introduction of crontab time expression will be described (This is important because our self-written task scheduler will still based on the crontab time expression):
+###### Before we start, a general introduction of Crontab time expression will be described (This is important because our self-written task scheduler will still based on the Crontab time expression):
 ## Crontab time expression
 ```
 .---------------- minute (0 - 59)
@@ -28,7 +28,7 @@ Most people knows that there is a tool called crontab in Linux and we can use it
 4. The forth column means month, every-X-months can be represented as  `*/X`, you can also specify some specified months with an expression like (each numbers are separated by a comma): `1,3,5` or a specified range with `1-3`.
 5. The fifth column means day of week, every-X-days in a week can be represented as  `*/X`, you can also specify some specified days in a week with an expression like (each numbers are separated by a comma): `1,3,5` or a specified range with `1-3`.
 
-## Some examples to help you understand crontab time format better
+## Some examples to help you understand Crontab time format better
 1. `30 8 * * *` means the task will be executed at 8:30 every day.
 2. `0 9 1,5,10 * *` means the task will be executed at 9:00 on the 1st, 5th and 10th day of the month.
 3. `10 1 * * 0,6` means the task will be executed at 1:10 every Saturday and Sunday.
@@ -36,9 +36,9 @@ Most people knows that there is a tool called crontab in Linux and we can use it
 5. `30 8 10 3-10 *` means the task will be executed at 8:30 on 10th from March to October.
 
 *****
-###### Now you must know better about the crontab time expression, it seems it is time to start write our own task scheduler based on the crontab time expression.
+###### Now you must know better about the Crontab time expression, it seems it is time to start write our own task scheduler based on the Crontab time expression.
 ## Validations
-- As we know, each fields in the crontab expression are separated by a white space, so the first step we need to do is to extract each field in the received string. We can simply do this with below code slice:
+- As we know, each fields in the Crontab expression are separated by a white space, so the first step we need to do is to extract each field in the received string. We can simply do this with below code slice:
 ```java
 String[] fields = cronString.split("\\s+");
 ```
@@ -97,7 +97,7 @@ private List<Integer> getSteppedRange(final int start, final int stop, final int
 }
 ```
 - After we set the arrays for each of the field, all preparations for calculating next run time are done. Below is the work flow which can make the calculating algorithm easier to understand:
-  - A table indicates the crontab fields and the arrays which contain all valid values of the field.
+  - A table indicates the Crontab fields and the arrays which contain all valid values of the field.
 ```
 +--------------+-----------------+
 |    Field     |     Array       |
