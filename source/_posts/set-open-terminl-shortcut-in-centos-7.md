@@ -1,6 +1,7 @@
 ---
 title: CentOS 7设置打开终端的快捷键
 date: 2017-10-04 18:57:21
+category: technology
 tags:
   - CentOS 7
   - shortcut

@@ -2,6 +2,7 @@
 title: How to write a user friendly Crontab like task scheduler with java
 reward: true
 date: 2017-10-06 17:43:39
+category: technology
 tags:
   - Crontab
   - java

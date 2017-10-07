@@ -1,6 +1,7 @@
 ---
 title: Hello World
 date: 2017-09-10 21:49:34
+category: technology
 tags:
   - hexo
 ---

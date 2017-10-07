@@ -1,6 +1,9 @@
 ---
 title: GitHub Markdown Guide
 date: 2017-10-04 19:40:15
+category:
+  - technology
+  - 转载
 tags:
   - github
   - Markdown

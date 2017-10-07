@@ -1,6 +1,7 @@
 ---
 title: Sublime3 安装Markdown插件
 date: 2017-09-14 21:49:34
+category: technology
 tags:
   - Sublime3
 ---
@@ -15,7 +16,7 @@ MarkdownEditing provides a decent Markdown color scheme (light and dark) with mo
 
 <!--more-->
 
-OmniMarkupPreviewer renders markups into htmls and send it to web browser in the backgound, which enables a live preview. Besides, OmniMarkupPreviewer provide support for exporting result to html file as well.
+OmniMarkupPreviewer renders markups into htmls and send it to web browser in the background, which enables a live preview. Besides, OmniMarkupPreviewer provide support for exporting result to html file as well.
 
 ## How to install the plugins
 

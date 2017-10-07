@@ -2,6 +2,7 @@
 title: How to write a Crontab like task scheduler with java
 reward: true
 date: 2017-10-05 11:30:032
+category: technology
 tags:
   - Crontab
   - java
