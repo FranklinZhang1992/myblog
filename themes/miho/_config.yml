@@ -7,13 +7,13 @@ favicon: /favicon.ico
 # Header
 
 # Keywords of your site | 网站关键字
-keywords: MinHow,MinHow's Blog
+keywords: Franklin Franklin's Blog
 # Head headline | 头部标题
-header_title: MinHow's Blog
+header_title: Franklin's Blog
 # Head description | 头部描述
-header_description: 一个专注 WEB 开发的技术博客
+header_description: 小小程序员
 # Link to your logo | logo地址
-logo: images/logo.png
+logo: images/logo.jpg
 # Link to your banner_img | 首页banner图地址
 banner_img: images/banner.jpg
 # Menu setting | 菜单设置
@@ -41,21 +41,23 @@ menu:
 #    target: true         Whether to jump out | 是否跳出
 social:
   home:
-    title: MinHow
-    url: //minhow.com
-    target: true
+    title: HOME
+    url: /
+    target: false
   github:
     title: Github
-    url: //github.com/wongminho
+    url: //github.com/FranklinZhang1992
     target: true
   weibo:
     title: Weibo
-    url: //weibo.com/WongMinHo
+    url: //weibo.com/2446110807
     target: true
-  twitter:
-    title: Twitter
-    url: //twitter.com/huangminhow
+  rss:
+    title: rss
+    url: /atom.xml
     target: true
+  #weibo:
+  #twitter:
   #qq:
   #weixin:
   #snapchat:
@@ -119,4 +121,4 @@ access_counter:
   site_pv: 总访问量：
 
 # Copyright Information | 版权信息
-copyright: 2017 MinHow
+copyright: 2017 Franklin
